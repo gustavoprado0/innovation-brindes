@@ -17,11 +17,18 @@ export const useAuthStore = create<AuthState>()(
       user: null,
       keepLoggedIn: false,
 
-      setAuth: (token, user, keepLoggedIn) =>
-        set({ token, user, keepLoggedIn }),
+      setAuth: (token, user, keepLoggedIn) => {
+        const days = keepLoggedIn ? 7 : 1;
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = `auth-token=${token}; path=/; expires=${date.toUTCString()}`;
+        set({ token, user, keepLoggedIn });
+      },
 
-      logout: () =>
-        set({ token: null, user: null, keepLoggedIn: false }),
+      logout: () => {
+        document.cookie = 'auth-token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        set({ token: null, user: null, keepLoggedIn: false });
+      },
     }),
     {
       name: 'auth-storage',

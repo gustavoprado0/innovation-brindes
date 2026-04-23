@@ -1,14 +1,12 @@
 'use client';
 
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { User, Lock } from 'lucide-react';
 import { loginApi } from '@/lib/api';
 import { mapUser } from '@/lib/mappers';
 import { useAuthStore } from '@/stores/authStore';
 
 export default function LoginForm() {
-  const router = useRouter();
   const { setAuth } = useAuthStore();
 
   const [email, setEmail] = useState('');
@@ -32,7 +30,10 @@ export default function LoginForm() {
 
       const user = mapUser(response);
       setAuth(response.token_de_acesso, user, keepLoggedIn);
-      router.push('/products');
+
+      // Small delay to ensure cookie is set before redirect
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      window.location.href = '/products';
     } catch {
       setError('Erro ao conectar com o servidor. Tente novamente.');
     } finally {
@@ -44,7 +45,6 @@ export default function LoginForm() {
     <div className="w-full max-w-md rounded-2xl bg-[#5cb85c] p-8 shadow-2xl">
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
 
-        {/* Email field */}
         <div className="flex items-center gap-3 rounded-full bg-white px-4 py-3">
           <User className="text-gray-400" size={20} />
           <input
@@ -58,7 +58,6 @@ export default function LoginForm() {
           />
         </div>
 
-        {/* Password field */}
         <div className="flex items-center gap-3 rounded-full bg-white px-4 py-3">
           <Lock className="text-gray-400" size={20} />
           <input
@@ -72,7 +71,6 @@ export default function LoginForm() {
           />
         </div>
 
-        {/* Keep logged in + forgot password */}
         <div className="flex items-center justify-between px-1 text-sm text-white">
           <label className="flex cursor-pointer items-center gap-2">
             <input
@@ -88,14 +86,12 @@ export default function LoginForm() {
           </a>
         </div>
 
-        {/* Error message */}
         {error && (
           <p className="rounded-lg bg-red-100 px-4 py-2 text-center text-sm text-red-600">
             {error}
           </p>
         )}
 
-        {/* Submit button */}
         <button
           type="submit"
           disabled={isLoading}

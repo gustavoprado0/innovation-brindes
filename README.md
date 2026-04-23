@@ -81,9 +81,14 @@ npm run test:e2e
 - Animações de transição entre páginas
 - PWA / offline support
 
-## 📊 Lighthouse
+## 📊 Lighthouse (Desktop)
 
-> Screenshot a ser adicionado após build de produção
+| Métrica | Score |
+|---|---|
+| ⚡ Performance | 96 |
+| ♿ Accessibility | 90 |
+| ✅ Best Practices | 100 |
+| 🔍 SEO | 100 |
 
 ## 🎥 Demo
 

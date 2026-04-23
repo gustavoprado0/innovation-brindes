@@ -18,6 +18,7 @@ export default function ProductsClient() {
   const { logout } = useAuthStore();
   const { favorites } = useFavoritesStore();
 
+  const [mounted, setMounted] = useState(false);
   const [search, setSearch] = useState('');
   const [debouncedFilters, setDebouncedFilters] = useState<ProductFilters>({});
   const [sorting, setSorting] = useState<Sorting>({ field: 'name', direction: 'asc' });
@@ -25,6 +26,19 @@ export default function ProductsClient() {
   const [page, setPage] = useState(1);
 
   const { data: allProducts = [], isLoading, isError, refetch } = useProducts(debouncedFilters);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    function handleLogout() {
+      logout();
+      router.push('/login');
+    }
+    window.addEventListener('auth:logout', handleLogout);
+    return () => window.removeEventListener('auth:logout', handleLogout);
+  }, [logout, router]);
 
   const debouncedSearch = useCallback(
     debounce((value: string) => {
@@ -46,14 +60,7 @@ export default function ProductsClient() {
     debouncedSearch(value);
   }
 
-  useEffect(() => {
-    function handleLogout() {
-      logout();
-      router.push('/login');
-    }
-    window.addEventListener('auth:logout', handleLogout);
-    return () => window.removeEventListener('auth:logout', handleLogout);
-  }, [logout, router]);
+  if (!mounted) return null;
 
   const filteredProducts = showFavoritesOnly
     ? allProducts.filter((p) => favorites.includes(p.code))

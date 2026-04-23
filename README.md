@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Innovation Brindes – Frontend Challenge
 
-## Getting Started
+Aplicação Next.js construída como parte do processo seletivo para desenvolvedor Front-end Júnior.
 
-First, run the development server:
+## 🚀 Tecnologias
+
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Zustand** – estado global (auth + favoritos)
+- **React Query** – cache e estados de loading/erro
+- **Axios** – cliente HTTP
+- **Vitest + React Testing Library** – testes unitários
+- **Playwright** – teste E2E
+
+## ▶️ Rodando com Docker
+
+### Pré-requisitos
+- Docker instalado
+
+### Passos
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# 1. Clone o repositório
+git clone https://github.com/gustavoprado0/innovation-brindes.git
+cd innovation-brindes
+
+# 2. Build e start com Docker Compose
+docker-compose up --build
+
+# 3. Acesse no navegador
+http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## ▶️ Rodando localmente (sem Docker)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+# Instalar dependências
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Rodar em desenvolvimento
+npm run dev
 
-## Learn More
+# Rodar testes unitários
+npm test
 
-To learn more about Next.js, take a look at the following resources:
+# Rodar teste E2E (precisa do dev rodando)
+npm run test:e2e
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🔐 Credenciais de acesso
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Usuário:** dinamica
+- **Senha:** 123
 
-## Deploy on Vercel
+## 📁 Estrutura do projeto
+    src/
+    app/           # Rotas (login, products)
+    components/    # Componentes React
+    layout/      # Header, LoginForm, QueryProvider
+    products/    # ProductCard, ProductGrid, ProductModal, ProductsToolbar
+    hooks/         # useProducts
+    lib/           # api.ts, mappers.ts, utils.ts
+    stores/        # authStore, favoritesStore (Zustand)
+    tests/         # Testes unitários e E2E
+    types/         # Tipos TypeScript
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🏗️ Decisões técnicas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **App Router** do Next.js 14 para aproveitar Server Components e Middleware nativo
+- **Middleware** protege rotas lendo o cookie `auth-token` no servidor
+- **Cookie + Zustand persist** para manter sessão — o cookie é lido pelo middleware (servidor) e o Zustand pelo cliente
+- **Mapeamento de tipos API → internos** para manter o código em inglês e desacoplar a UI da API
+- **Debounce de 400ms** na busca para evitar requisições excessivas
+- **Paginação** por "carregar mais" em lotes de 20 produtos
+- **localStorage** para persistir favoritos entre sessões
+
+## ⚠️ Pendências
+
+- Testes unitários para mais componentes (Modal, Toolbar)
+- Animações de transição entre páginas
+- PWA / offline support
+
+## 📊 Lighthouse
+
+> Screenshot a ser adicionado após build de produção
+
+## 🎥 Demo
+
+> GIF/MP4 a ser adicionado

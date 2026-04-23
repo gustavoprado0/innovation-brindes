@@ -12,7 +12,7 @@ export function formatCurrency(value: number): string {
   }).format(value);
 }
 
-export function debounce<T extends (...args: unknown[]) => void>(
+export function debounce<T extends (...args: Parameters<T>) => void>(
   fn: T,
   ms: number
 ): (...args: Parameters<T>) => void {

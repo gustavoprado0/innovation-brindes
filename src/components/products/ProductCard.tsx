@@ -16,27 +16,28 @@ export default function ProductCard({ product, onConfirm }: ProductCardProps) {
 
   return (
     <div className="bg-white rounded-xl shadow hover:shadow-md transition flex flex-col overflow-hidden border border-gray-100">
-      <div className="relative">
-        <span className="absolute top-2 left-2 text-[#5cb85c] text-xs font-bold tracking-wide">
+
+      <div className="flex items-center justify-between px-3 pt-2">
+        <span className="text-[#5cb85c] text-xs font-bold tracking-wide">
           EXCLUSIVO!
         </span>
-
         <button
           onClick={() => toggleFavorite(product.code)}
           aria-label={favorite ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
-          className="absolute top-2 right-2 p-1 rounded-full bg-white/80 hover:bg-white transition"
+          className="p-1 rounded-full bg-white hover:bg-gray-100 transition"
         >
           <Heart
             size={18}
             className={favorite ? 'fill-red-500 text-red-500' : 'text-gray-400'}
           />
         </button>
+      </div>
 
-        {/* Product image */}
+      <div className="bg-gray-50">
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-full h-44 object-contain p-4 bg-gray-50"
+          className="w-full h-44 object-contain p-4"
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://placehold.co/300x200?text=Sem+Imagem';
           }}

@@ -20,7 +20,7 @@ export default function Header() {
           i
         </div>
         <div className="text-white leading-tight">
-          <span className="font-bold text-lg">innovation</span>
+          <span className="font-bold text-lg">Innovation</span>
           <br />
           <span className="text-xs tracking-widest uppercase">brindes</span>
         </div>

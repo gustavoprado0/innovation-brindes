@@ -60,7 +60,7 @@ npm run test:e2e
     layout/      # Header, LoginForm, QueryProvider
     products/    # ProductCard, ProductGrid, ProductModal, ProductsToolbar
     hooks/         # useProducts
-    lib/           # api.ts, mappers.ts, utils.ts
+    lib/           # api.ts, mappers.ts, utils.ts, validations.ts
     stores/        # authStore, favoritesStore (Zustand)
     tests/         # Testes unitários e E2E
     types/         # Tipos TypeScript

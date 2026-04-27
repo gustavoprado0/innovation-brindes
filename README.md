@@ -75,11 +75,12 @@ npm run test:e2e
 - **Paginação** por "carregar mais" em lotes de 20 produtos
 - **localStorage** para persistir favoritos entre sessões
 
-## ⚠️ Pendências
+## ⚠️ Pendências e melhorias futuras
 
 - Testes unitários para mais componentes (Modal, Toolbar)
 - Animações de transição entre páginas
 - PWA / offline support
+- Adoção de um design system como **shadcn/ui**, **Material UI** ou **Chakra UI** para padronizar componentes, acelerar o desenvolvimento e garantir maior consistência visual e acessibilidade em escala
 
 ## 📊 Lighthouse (Desktop)
 
@@ -89,7 +90,3 @@ npm run test:e2e
 | ♿ Accessibility | 90 |
 | ✅ Best Practices | 100 |
 | 🔍 SEO | 100 |
-
-## 🎥 Demo
-
-> GIF/MP4 a ser adicionado

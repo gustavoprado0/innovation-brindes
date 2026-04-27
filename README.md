@@ -84,9 +84,4 @@ npm run test:e2e
 
 ## 📊 Lighthouse (Desktop)
 
-| Métrica | Score |
-|---|---|
-| ⚡ Performance | 96 |
-| ♿ Accessibility | 90 |
-| ✅ Best Practices | 100 |
-| 🔍 SEO | 100 |
+![Lighthouse](./docs/lighthouse-desktop.png)

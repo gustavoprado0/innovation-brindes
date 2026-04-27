@@ -41,12 +41,40 @@ npm install
 # Rodar em desenvolvimento
 npm run dev
 
-# Rodar testes unitários
-npm test
+```
 
-# Rodar teste E2E (precisa do dev rodando)
+## 🧪 Testes
+
+✔ Testes unitários isolados (Vitest)  
+✔ Teste E2E (Playwright) validando fluxo principal  
+✔ Separação clara entre tipos de teste  
+
+### Unitários
+Executados com Vitest e React Testing Library  
+✔ 7 testes cobrindo utils e componentes  
+
+Rodar:
+```bash
+npm test
+```
+
+### E2E
+
+Executados com Playwright  
+✔ Fluxo validado: login → listagem de produtos  
+✔ 1 teste de smoke passando  
+
+Rodar:
+```bash
 npm run test:e2e
 ```
+
+
+## 📊 Test Coverage
+
+Cobertura de testes com Vitest (~50%).  
+Foco em componentes principais e funções utilitárias.
+
 
 ## 🔐 Credenciais de acesso
 
@@ -57,13 +85,15 @@ npm run test:e2e
     src/
     app/           # Rotas (login, products)
     components/    # Componentes React
-    layout/      # Header, LoginForm, QueryProvider
-    products/    # ProductCard, ProductGrid, ProductModal, ProductsToolbar
+    layout/        # Header, LoginForm, QueryProvider
+    products/      # ProductCard, ProductGrid, ProductModal, ProductsToolbar
     hooks/         # useProducts
     lib/           # api.ts, mappers.ts, utils.ts, validations.ts
     stores/        # authStore, favoritesStore (Zustand)
-    tests/         # Testes unitários e E2E
+    tests/         # Testes unitários
+    e2e/           # Testes E2E (Playwright)
     types/         # Tipos TypeScript
+
 
 ## 🏗️ Decisões técnicas
 

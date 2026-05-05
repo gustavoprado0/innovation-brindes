@@ -38,7 +38,10 @@ export default function LoginForm() {
       const response = await loginApi({ email, senha: password });
 
       if (response.status === 0) {
-        setError(response.message || 'Usuário ou senha inválidos.');
+        setFieldErrors((prev) => ({
+          ...prev,
+          password: 'Senha inválida.',
+        }));
         return;
       }
 
